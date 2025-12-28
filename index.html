@@ -6,10 +6,6 @@
     <title>Wayne Sithole | Interactive Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* ---------------------------------- */
-        /* --------- CSS STYLING ---------- */
-        /* ---------------------------------- */
-
         :root {
             --main-bg: #1e1e2f;
             --glossy-accent: #6a6aff;
@@ -18,14 +14,12 @@
             --border-glow: 0 0 15px rgba(106, 106, 255, 0.8);
             --inner-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6);
             --transition-speed: 0.5s;
-            --plate-width: 160px; 
             --plate-gap: 10px;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             height: 100vh;
             background-color: var(--main-bg);
             color: var(--text-light);
@@ -34,209 +28,122 @@
             overflow: hidden;
         }
 
-        /* --- Background Images Container --- */
         #background-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1; overflow: hidden;
         }
 
         .background-image {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
+            position: absolute; width: 100%; height: 100%;
+            background-size: cover; background-position: center;
+            opacity: 0; transition: opacity 1.5s ease-in-out;
             filter: blur(3px) brightness(0.4);
         }
 
-        .background-image.active {
-            opacity: 1;
-        }
+        .background-image.active { opacity: 1; }
 
-        /* --- Main Layout Grid --- */
         #main-content {
             display: grid;
             grid-template-columns: 250px 1fr;
             padding: 20px;
-            align-items: flex-start; 
             height: calc(100vh - 190px);
         }
 
-        /* --- Left Sidebar --- */
         #left-sidebar {
             background: rgba(42, 42, 64, 0.8);
-            padding: 20px;
-            border-radius: 15px;
+            padding: 20px; border-radius: 15px;
             box-shadow: var(--border-glow);
-            height: 100%; 
-            text-align: center;
-            overflow-y: auto; 
-            scrollbar-width: none;
+            height: 100%; text-align: center;
+            overflow-y: auto; scrollbar-width: none;
         }
         #left-sidebar::-webkit-scrollbar { display: none; }
 
         #profile-pic {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin: 0 auto 15px;
+            width: 100px; height: 100px;
+            border-radius: 50%; margin: 0 auto 15px;
             border: 4px solid var(--glossy-accent);
             box-shadow: 0 0 10px rgba(106, 106, 255, 0.6);
-            background-size: cover; 
-            background-position: center;
+            background-size: cover; background-position: center;
         }
         
-        #social-links {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 25px;
-        }
+        #social-links { display: flex; justify-content: space-around; margin-bottom: 25px; }
 
         #navigation-links {
-            text-align: left;
-            padding: 10px; 
+            text-align: left; padding: 10px; 
             border: 1px solid rgba(106, 106, 255, 0.3); 
-            border-radius: 10px;
-            background: rgba(42, 42, 64, 0.5); 
+            border-radius: 10px; background: rgba(42, 42, 64, 0.5); 
             margin-top: 15px;
         }
 
         .nav-link {
-            display: block;
-            text-decoration: none;
-            color: var(--text-light);
-            padding: 10px 15px; 
-            margin: 5px 0; 
-            border-radius: 8px;
+            display: block; text-decoration: none;
+            color: var(--text-light); padding: 10px 15px; 
+            margin: 5px 0; border-radius: 8px;
             transition: all 0.3s;
         }
 
-        .nav-link:hover {
-            background-color: var(--glossy-accent);
-            color: var(--main-bg);
-            padding-left: 25px;
-        }
+        .nav-link:hover { background-color: var(--glossy-accent); color: var(--main-bg); padding-left: 25px; }
 
-        /* --- Project Display Area --- */
-        #project-display-area {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
+        #project-display-area { display: flex; flex-direction: column; align-items: center; justify-content: center; }
 
         #current-project-plate {
-            width: 90%;
-            max-width: 800px;
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
+            width: 90%; max-width: 800px;
+            background: var(--card-bg); border-radius: 20px;
+            padding: 30px; text-align: center;
             border: 2px solid var(--glossy-accent); 
             box-shadow: var(--border-glow);
         }
 
         .action-button {
-            display: inline-block;
-            padding: 12px 25px;
-            margin: 10px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            color: var(--main-bg);
-            background-color: var(--glossy-accent);
+            display: inline-block; padding: 12px 25px; margin: 10px;
+            border-radius: 30px; text-decoration: none; font-weight: bold;
+            cursor: pointer; transition: all 0.3s;
+            color: var(--main-bg); background-color: var(--glossy-accent);
             border: 2px solid var(--glossy-accent); 
         }
 
-        .action-button:hover {
-            background: transparent;
-            color: var(--glossy-accent);
-            transform: scale(1.05);
-        }
+        .action-button:hover { background: transparent; color: var(--glossy-accent); transform: scale(1.05); }
 
-        /* --- Bottom Grid --- */
         #project-grid {
-            width: 98%; 
-            display: grid;
+            width: 98%; display: grid;
             grid-template-columns: repeat(6, 1fr); 
-            gap: var(--plate-gap);
-            padding: 20px;
+            gap: var(--plate-gap); padding: 20px;
         }
 
         .project-plate {
-            height: 90px;
-            background: var(--card-bg);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            padding: 5px;
+            height: 90px; background: var(--card-bg); border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem; padding: 5px; text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0.6;
-            cursor: pointer;
-            transition: all 0.3s;
+            opacity: 0.6; cursor: pointer; transition: all 0.3s;
         }
 
-        .project-plate.active {
-            opacity: 1;
-            border: 2px solid var(--glossy-accent);
-            transform: scale(1.05); 
-        }
+        .project-plate.active { opacity: 1; border: 2px solid var(--glossy-accent); transform: scale(1.05); }
 
-        /* --- Modal & Spinner Styling --- */
+        /* --- Modal & Spinner --- */
         #image-modal {
-            display: none; 
-            position: fixed;
-            z-index: 9999;
-            left: 0; top: 0;
+            display: none; position: fixed;
+            z-index: 9999; left: 0; top: 0;
             width: 100%; height: 100%;
             background-color: rgba(0, 0, 0, 0.95);
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+            justify-content: center; align-items: center; flex-direction: column;
         }
 
-        #modal-img {
-            max-width: 85%;
-            max-height: 75%;
-            border: 2px solid var(--glossy-accent);
-            display: none; /* Hidden until loaded */
-        }
+        #modal-img { max-width: 85%; max-height: 75%; border: 2px solid var(--glossy-accent); display: none; }
 
         .loader {
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid var(--glossy-accent);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            border: 5px solid #f3f3f3; border-top: 5px solid var(--glossy-accent);
+            border-radius: 50%; width: 50px; height: 50px;
             animation: spin 1s linear infinite;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         .modal-back-btn {
-            margin-top: 25px;
-            padding: 12px 35px;
-            background: var(--glossy-accent);
-            color: white;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: bold;
+            margin-top: 25px; padding: 12px 35px;
+            background: var(--glossy-accent); color: white;
+            border: none; border-radius: 30px; cursor: pointer; font-weight: bold;
         }
     </style>
 </head>
@@ -252,6 +159,7 @@
             <div id="profile-pic" style="background-image: url('https://lh3.googleusercontent.com/d/1x08fIFARLiNap8-lcDJRp_AMzJ7CRmAQ');"></div>
             <h2>Wayne Sithole</h2>
             <h3>Data Scientist</h3>
+            <h3>Business Analyst</h3>
             <p>BSc Mathematics & Physics</p>
             <div id="social-links">
                 <a href="https://www.linkedin.com/in/wayne-sithole-23b442202" target="_blank" style="color:white;"><i class="fab fa-linkedin"></i></a>
@@ -334,6 +242,7 @@
         ];
 
         let currentProjectIndex = 0;
+        let shuffleInterval;
         const projectGrid = document.getElementById('project-grid');
 
         function updateProjectDisplay(index) {
@@ -343,9 +252,10 @@
             document.getElementById('project-title').textContent = project.name;
             document.getElementById('project-description').textContent = project.desc;
             document.getElementById('github-repo-btn').href = project.repo_link;
-
-            // Handle Modal Open on Click
-            document.getElementById('see-images-btn').onclick = () => openImageModal(project.images_link);
+            document.getElementById('see-images-btn').onclick = (e) => {
+                e.preventDefault();
+                openImageModal(project.images_link);
+            };
 
             document.querySelectorAll('.project-plate').forEach((plate, i) => {
                 plate.classList.toggle('active', i === index);
@@ -359,6 +269,13 @@
             newBg.style.backgroundImage = `url('${project.image_url}')`;
             bgElements[activeBgIndex].classList.remove('active');
             newBg.classList.add('active');
+        }
+
+        function startAutoShuffle() {
+            return setInterval(() => {
+                let nextIndex = (currentProjectIndex + 1) % projectData.length;
+                updateProjectDisplay(nextIndex);
+            }, 6000);
         }
 
         function openImageModal(src) {
@@ -386,10 +303,15 @@
                 const plate = document.createElement('div');
                 plate.className = 'project-plate';
                 plate.textContent = project.name.split(': ')[0];
-                plate.onclick = () => updateProjectDisplay(index);
+                plate.onclick = () => {
+                    clearInterval(shuffleInterval);
+                    updateProjectDisplay(index);
+                    shuffleInterval = startAutoShuffle();
+                };
                 projectGrid.appendChild(plate);
             });
             updateProjectDisplay(0);
+            shuffleInterval = startAutoShuffle();
         }
 
         document.addEventListener('DOMContentLoaded', initializeProjectGrid);
