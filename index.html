@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Interactive Portfolio</title>
+    <title>Wayne Sithole | Interactive Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* ---------------------------------- */
@@ -20,7 +20,6 @@
             --transition-speed: 0.5s;
             --plate-width: 160px; 
             --plate-gap: 10px;
-            --arrow-size: 40px;
         }
 
         body {
@@ -79,19 +78,15 @@
             height: 100%; 
             text-align: center;
             overflow-y: auto; 
-            -ms-overflow-style: none;
             scrollbar-width: none;
         }
         #left-sidebar::-webkit-scrollbar { display: none; }
-
-        #profile-pic-container { margin-bottom: 15px; }
 
         #profile-pic {
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            background-color: #3f3f5a;
-            margin: 0 auto;
+            margin: 0 auto 15px;
             border: 4px solid var(--glossy-accent);
             box-shadow: 0 0 10px rgba(106, 106, 255, 0.6);
             background-size: cover; 
@@ -102,138 +97,146 @@
             display: flex;
             justify-content: space-around;
             margin-bottom: 25px;
-            padding: 0 10px;
         }
 
-        /* --- Navigation Links (FIXED STACKING AND BORDER) --- */
         #navigation-links {
             text-align: left;
-            padding: 10px; /* Adjusted padding */
+            padding: 10px; 
             border: 1px solid rgba(106, 106, 255, 0.3); 
             border-radius: 10px;
             background: rgba(42, 42, 64, 0.5); 
             margin-top: 15px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
         }
 
         .nav-link {
             display: block;
             text-decoration: none;
             color: var(--text-light);
-            font-size: 1.1em; /* Adjusted size */
-            padding: 10px 15px; /* Ensures vertical height */
-            margin: 5px 0; /* Ensures separation between links */
+            padding: 10px 15px; 
+            margin: 5px 0; 
             border-radius: 8px;
-            transition: background var(--transition-speed), color var(--transition-speed), padding-left var(--transition-speed);
+            transition: all 0.3s;
         }
 
         .nav-link:hover {
             background-color: var(--glossy-accent);
             color: var(--main-bg);
             padding-left: 25px;
-            font-weight: bold;
         }
 
-
-        /* --- Top Centered Project Display Plate --- */
+        /* --- Project Display Area --- */
         #project-display-area {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            margin-left: 20px;
         }
 
         #current-project-plate {
             width: 90%;
             max-width: 800px;
-            min-height: 250px;
             background: var(--card-bg);
             border-radius: 20px;
             padding: 30px;
             text-align: center;
             border: 2px solid var(--glossy-accent); 
-            box-shadow: var(--border-glow), var(--inner-shadow);
-            opacity: 0.95;
-            transition: all var(--transition-speed) ease-in-out;
+            box-shadow: var(--border-glow);
         }
 
-        /* --- Action Buttons (Bordered) --- */
         .action-button {
             display: inline-block;
             padding: 12px 25px;
-            margin: 0 10px;
+            margin: 10px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
             cursor: pointer;
-            transition: background var(--transition-speed), transform 0.2s, box-shadow var(--transition-speed);
-            
+            transition: all 0.3s;
             color: var(--main-bg);
             background-color: var(--glossy-accent);
             border: 2px solid var(--glossy-accent); 
-            box-shadow: 0 0 10px rgba(106, 106, 255, 0.6);
         }
 
         .action-button:hover {
             background: transparent;
             color: var(--glossy-accent);
-            border-color: var(--glossy-accent);
             transform: scale(1.05);
-            box-shadow: var(--border-glow);
         }
 
-        /* --- Bottom Project Plates (Grid View) --- */
-        #project-carousel-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    /* Remove any fixed height if it's still there */
-}
-        
+        /* --- Bottom Grid --- */
         #project-grid {
-    width: 98%; 
-    max-width: 1400px;
-    display: grid;
-    /* Force exactly 6 columns on one line */
-    grid-template-columns: repeat(6, 1fr); 
-    gap: var(--plate-gap);
-    padding: 10px;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden; /* Prevents any scrollbars */
-}
-
-        #carousel-wrapper, .carousel-arrow {
-            display: none !important; 
+            width: 98%; 
+            display: grid;
+            grid-template-columns: repeat(6, 1fr); 
+            gap: var(--plate-gap);
+            padding: 20px;
         }
 
         .project-plate {
-    width: 100%; /* Take up the full width of the grid column */
-    min-width: 0; /* Allows the plate to shrink if needed */
-    height: 90px; /* Slightly shorter to stay "spacy" */
-    background: var(--card-bg);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem; /* Smaller text ensures the title fits on one line */
-    font-weight: bold;
-    text-align: center;
-    padding: 5px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    opacity: 0.7;
-    transition: all 0.3s ease;
-}
+            height: 90px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            padding: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.6;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
 
         .project-plate.active {
             opacity: 1;
-            box-shadow: var(--border-glow); 
             border: 2px solid var(--glossy-accent);
             transform: scale(1.05); 
+        }
+
+        /* --- Modal & Spinner Styling --- */
+        #image-modal {
+            display: none; 
+            position: fixed;
+            z-index: 9999;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #modal-img {
+            max-width: 85%;
+            max-height: 75%;
+            border: 2px solid var(--glossy-accent);
+            display: none; /* Hidden until loaded */
+        }
+
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--glossy-accent);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .modal-back-btn {
+            margin-top: 25px;
+            padding: 12px 35px;
+            background: var(--glossy-accent);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -246,25 +249,19 @@
 
     <div id="main-content">
         <div id="left-sidebar">
-            <div id="profile-pic-container">
-                <div id="profile-pic" style="background-image: url('https://lh3.googleusercontent.com/d/1x08fIFARLiNap8-lcDJRp_AMzJ7CRmAQ'); background-size: cover; background-position: center;"></div>
-            </div>
+            <div id="profile-pic" style="background-image: url('https://lh3.googleusercontent.com/d/1x08fIFARLiNap8-lcDJRp_AMzJ7CRmAQ');"></div>
             <h2>Wayne Sithole</h2>
             <h3>Data Scientist</h3>
-            <h3>Business Analyst</h3>
             <p>BSc Mathematics & Physics</p>
-            <p><span style="font-size: 80%;">University of South Africa</span></p>
             <div id="social-links">
-                <a href="https://www.linkedin.com/in/wayne-sithole-23b442202" target="_blank" class="social-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/Wayne0792" target="_blank" class="social-link" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="mailto:jwaynesithole@gmail.com" class="social-link" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.linkedin.com/in/wayne-sithole-23b442202" target="_blank" style="color:white;"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/Wayne0792" target="_blank" style="color:white;"><i class="fab fa-github"></i></a>
+                <a href="mailto:jwaynesithole@gmail.com" style="color:white;"><i class="fas fa-envelope"></i></a>
             </div>
-            
             <div id="navigation-links">
-                <a href="https://github.com/Wayne0792" class="nav-link">Projects</a>
-                <a href="https://drive.google.com/file/d/1bin0UFug2xmZCHJi4dc3kme_3HpWbwO7/view?usp=drive_link" class="nav-link">Skills</a>
-                
-                <a href="https://drive.google.com/file/d/1TwqIifwsqlgM41cApjEvbXlViXYMrOwJ/view?usp=drive_link" class="nav-link">Work experience</a>
+                <a href="#" class="nav-link">Projects</a>
+                <a href="https://drive.google.com/file/d/1bin0UFug2xmZCHJi4dc3kme_3HpWbwO7/view" class="nav-link" target="_blank">Skills</a>
+                <a href="https://drive.google.com/file/d/1TwqIifwsqlgM41cApjEvbXlViXYMrOwJ/view" class="nav-link" target="_blank">Experience</a>
             </div>
         </div>
 
@@ -272,61 +269,64 @@
             <div id="current-project-plate">
                 <h2 id="project-title"></h2>
                 <p id="project-description"></p>
-                <a id="see-images-btn" class="action-button" href="#" target="_blank">SEE IMAGES</a>
-                <a id="github-repo-btn" class="action-button" href="#" target="_blank">GITHUB REPO</a>
+                <a id="see-images-btn" class="action-button">SEE IMAGES</a>
+                <a id="github-repo-btn" class="action-button" target="_blank">GITHUB REPO</a>
             </div>
         </div>
     </div>
 
     <div id="project-carousel-container">
-        <div id="project-grid">
-            </div>
+        <div id="project-grid"></div>
+    </div>
+
+    <div id="image-modal">
+        <div id="modal-loader" class="loader"></div>
+        <img id="modal-img" src="" alt="Project Preview">
+        <button class="modal-back-btn" onclick="closeImageModal()">
+            <i class="fas fa-arrow-left"></i> BACK TO PORTFOLIO
+        </button>
     </div>
 
     <script>
-        /* ---------------------------------- */
-        /* -------- JAVASCRIPT LOGIC -------- */
-        /* ---------------------------------- */
-
         const projectData = [
             {
-                name: "Project 1: Automated OCR (Optical Computer Recognision) Data Logger",
-                desc: "Automated solution using Tesseract OCR and OpenCV to extract, process, and log time-series data from visual displays for industrial monitoring and automation.",
-                image_url: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                name: "Project 1: Automated OCR Data Logger",
+                desc: "Automated solution using Tesseract OCR and OpenCV to extract, process, and log time-series data from visual displays.",
+                image_url: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1000",
                 images_link: "https://www.docupile.com/wp-content/uploads/2018/05/OCR-800x449.jpeg",
                 repo_link: "https://github.com/Wayne0792/Automated-OCR-Data-Logger"
             },
             {
-                name: "Project 2: Medical NLP: Intent Classification & Entity Recognition",
-                desc: "Demonstrates text classification for medical intent triage and advanced configuration of BioBERT for Named Entity Recognition (NER)",
-                image_url: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                name: "Project 2: Medical NLP",
+                desc: "Text classification for medical intent triage and BioBERT for Named Entity Recognition (NER).",
+                image_url: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1000",
                 images_link: "https://raw.githubusercontent.com/Wayne0792/Medical-NLP/main/NLP.png",
                 repo_link: "https://github.com/Wayne0792/Medical-NLP"
             },
             {
-                name: "Project 3: Credit Card Fraud Detection Pipeline",
-                desc: "Machine learning pipeline to detect and classify rare credit card fraud instances in a highly imbalanced dataset with a 0.172% fraud rate.",
-                image_url: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                name: "Project 3: Fraud Detection",
+                desc: "ML pipeline to detect fraud in highly imbalanced financial datasets (0.172% rate).",
+                image_url: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1000",
                 images_link: "https://raw.githubusercontent.com/Wayne0792/Fraud-Detection-DataScience/main/credicard.png",
                 repo_link: "https://github.com/Wayne0792/Fraud-Detection-DataScience"
             },
             {
-                name: "Project 4: Cars Analysis in SAS",
-                desc: "This project explores a dataset of various vehicle models to identify factors driving the Manufacturer's Suggested Retail Price (MSRP) and analyze market segments based on performance, size, and origin.",
-                image_url: "https://thumbs.dreamstime.com/b/close-up-laptop-displaying-colorful-code-night-bustling-city-environment-screen-shows-vibrant-lines-lights-348977743.jpg?w=768",
+                name: "Project 4: SAS Cars Analysis",
+                desc: "SAS-based statistical analysis of vehicle datasets to identify MSRP drivers and market segments.",
+                image_url: "https://thumbs.dreamstime.com/b/close-up-laptop-displaying-colorful-code-night-348977743.jpg",
                 images_link: "https://raw.githubusercontent.com/Wayne0792/Cars-Analysis/main/carsResults.png",
                 repo_link: "https://github.com/Wayne0792/Cars-Analysis"
             },
             {
-                name: "Project 5: KMeans-vs-DBSCAN-clustering",
-                desc: "Implemented and optimized K-Means and DBSCAN clustering algorithms using Python. This project demonstrates the trade-offs between hyperparameter tuning (k-value vs. Epsilon/MinPts) and the resulting Silhouette scores across spherical and irregular datasets",
+                name: "Project 5: Clustering Analysis",
+                desc: "Comparative implementation of K-Means vs DBSCAN for spatial data and noise handling.",
                 image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh3yfKl66UkNPjpwXtd7DSxFoPKuX-LCCfxw&s",
                 images_link: "https://preview.redd.it/k-means-vs-dbscan-a-dramatic-showdown-of-clustering-v0-q9vjya4arbpe1.png?width=1080&crop=smart&auto=webp&s=4cb7eab688da5fb27b624d3803ee7a6fd493960f",
                 repo_link: "https://github.com/Wayne0792/KMeans-vs-DBSCAN-clustering"
             },
-             {
-                name: "Project 6: Budget Tracker CLI Application",
-                desc: "This is a console-based (Command Line Interface) application built with Python to help users easily track income, record expenses, categorize transactions, and generate basic financial reports.",
+            {
+                name: "Project 6: Budget Tracker CLI",
+                desc: "Console-based Python application for income tracking, expense categorization, and reporting.",
                 image_url: "https://images.stockcake.com/public/c/d/2/cd206075-9b83-460f-a78f-cc36c2f3de90_large/futuristic-coding-workspace-stockcake.jpg",
                 images_link: "https://repository-images.githubusercontent.com/297892625/89cf6e00-4b7d-11eb-9c21-8d88e6a314d5",
                 repo_link: "https://github.com/Wayne0792/FreeCodeCamp_Projects_My_Solutions"
@@ -335,31 +335,22 @@
 
         let currentProjectIndex = 0;
         const projectGrid = document.getElementById('project-grid');
-        let shuffleInterval;
 
-        /**
-         * Updates the main display area and background with the selected project's details.
-         */
         function updateProjectDisplay(index) {
-            // Loop logic (Proj N -> Proj 1)
-            if (index < 0) index = projectData.length - 1;
-            if (index >= projectData.length) index = 0;
-
             currentProjectIndex = index;
             const project = projectData[index];
 
-            // 1. Update Project Plate Content (Top Display)
             document.getElementById('project-title').textContent = project.name;
             document.getElementById('project-description').textContent = project.desc;
-            document.getElementById('see-images-btn').href = project.images_link;
             document.getElementById('github-repo-btn').href = project.repo_link;
 
-            // 2. Update Active Project Plate Styling
+            // Handle Modal Open on Click
+            document.getElementById('see-images-btn').onclick = () => openImageModal(project.images_link);
+
             document.querySelectorAll('.project-plate').forEach((plate, i) => {
                 plate.classList.toggle('active', i === index);
             });
             
-            // 3. Update Background Image (Cross-fade logic)
             const bgElements = [document.getElementById('bg-0'), document.getElementById('bg-1')];
             let activeBgIndex = bgElements[0].classList.contains('active') ? 0 : 1;
             const inactiveBgIndex = 1 - activeBgIndex;
@@ -368,54 +359,40 @@
             newBg.style.backgroundImage = `url('${project.image_url}')`;
             bgElements[activeBgIndex].classList.remove('active');
             newBg.classList.add('active');
-
-            // Scroll the grid container to the active plate
-            const activePlate = document.querySelector('.project-plate.active');
-            if (activePlate) {
-                activePlate.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-            }
         }
 
-        /**
-         * Creates and inserts the project plates into the grid container.
-         */
+        function openImageModal(src) {
+            const modal = document.getElementById('image-modal');
+            const modalImg = document.getElementById('modal-img');
+            const loader = document.getElementById('modal-loader');
+            
+            modal.style.display = 'flex';
+            loader.style.display = 'block';
+            modalImg.style.display = 'none';
+            modalImg.src = src;
+
+            modalImg.onload = () => {
+                loader.style.display = 'none';
+                modalImg.style.display = 'block';
+            };
+        }
+
+        function closeImageModal() {
+            document.getElementById('image-modal').style.display = 'none';
+        }
+
         function initializeProjectGrid() {
             projectData.forEach((project, index) => {
                 const plate = document.createElement('div');
                 plate.className = 'project-plate';
                 plate.textContent = project.name.split(': ')[0];
-                plate.dataset.index = index;
-                plate.addEventListener('click', () => {
-                    clearInterval(shuffleInterval); 
-                    updateProjectDisplay(index);
-                    shuffleInterval = startAutoShuffle(); // Restart auto-shuffle
-                });
+                plate.onclick = () => updateProjectDisplay(index);
                 projectGrid.appendChild(plate);
             });
-            
-            // Start by displaying the first project
-            if (projectData.length > 0) {
-                updateProjectDisplay(0);
-            }
+            updateProjectDisplay(0);
         }
 
-        /**
-         * Sets up the auto-shuffling/looping logic (one by one).
-         */
-        function startAutoShuffle() {
-            if (projectData.length > 1) {
-                return setInterval(() => {
-                    let nextIndex = (currentProjectIndex + 1) % projectData.length;
-                    updateProjectDisplay(nextIndex);
-                }, 6000); 
-            }
-        }
-
-        // --- Run on Load ---
-        document.addEventListener('DOMContentLoaded', () => {
-            initializeProjectGrid();
-            shuffleInterval = startAutoShuffle();
-        });
+        document.addEventListener('DOMContentLoaded', initializeProjectGrid);
     </script>
 </body>
 </html>
