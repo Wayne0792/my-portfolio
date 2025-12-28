@@ -12,7 +12,6 @@
             --text-light: #f0f0f5;
             --card-bg: #2a2a40;
             --border-glow: 0 0 15px rgba(106, 106, 255, 0.8);
-            --inner-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6);
             --transition-speed: 0.5s;
             --plate-gap: 10px;
         }
@@ -81,6 +80,7 @@
             color: var(--text-light); padding: 10px 15px; 
             margin: 5px 0; border-radius: 8px;
             transition: all 0.3s;
+            cursor: pointer;
         }
 
         .nav-link:hover { background-color: var(--glossy-accent); color: var(--main-bg); padding-left: 25px; }
@@ -167,9 +167,9 @@
                 <a href="mailto:jwaynesithole@gmail.com" style="color:white;"><i class="fas fa-envelope"></i></a>
             </div>
             <div id="navigation-links">
-                <a href="#" class="nav-link">Projects</a>
-                <a href="https://drive.google.com/file/d/1bin0UFug2xmZCHJi4dc3kme_3HpWbwO7/view" class="nav-link" target="_blank">Skills</a>
-                <a href="https://drive.google.com/file/d/1TwqIifwsqlgM41cApjEvbXlViXYMrOwJ/view" class="nav-link" target="_blank">Experience</a>
+                <a onclick="location.reload()" class="nav-link">Projects</a>
+                <a onclick="openImageModal('https://raw.githubusercontent.com/Wayne0792/my-portfolio/main/tech_skills.png')" class="nav-link">Skills</a>
+                <a onclick="openImageModal('https://raw.githubusercontent.com/Wayne0792/my-portfolio/main/work_expe.png')" class="nav-link">Experience</a>
             </div>
         </div>
 
@@ -279,6 +279,9 @@
         }
 
         function openImageModal(src) {
+            // Stop the shuffle when someone is looking at skills/experience/images
+            clearInterval(shuffleInterval);
+
             const modal = document.getElementById('image-modal');
             const modalImg = document.getElementById('modal-img');
             const loader = document.getElementById('modal-loader');
@@ -296,6 +299,8 @@
 
         function closeImageModal() {
             document.getElementById('image-modal').style.display = 'none';
+            // Restart the shuffle when modal closes
+            shuffleInterval = startAutoShuffle();
         }
 
         function initializeProjectGrid() {
