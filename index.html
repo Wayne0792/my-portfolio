@@ -6,146 +6,167 @@
     <title>Wayne Sithole | Interactive Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        :root {
-            --main-bg: #1e1e2f;
-            --glossy-accent: #6a6aff;
-            --text-light: #f0f0f5;
-            --card-bg: #2a2a40;
-            --border-glow: 0 0 15px rgba(106, 106, 255, 0.8);
-            --transition-speed: 0.5s;
-            --plate-gap: 10px;
-        }
+    :root {
+        --main-bg: #1e1e2f;
+        --glossy-accent: #6a6aff;
+        --text-light: #f0f0f5;
+        --card-bg: #2a2a40;
+        --border-glow: 0 0 15px rgba(106, 106, 255, 0.8);
+        --transition-speed: 0.5s;
+        --plate-gap: 10px;
+    }
 
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0; padding: 0;
+        min-height: 100vh;
+        background-color: var(--main-bg);
+        color: var(--text-light);
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+
+    #background-container {
+        position: fixed; top: 0; left: 0;
+        width: 100%; height: 100%;
+        z-index: -1; overflow: hidden;
+    }
+
+    .background-image {
+        position: absolute; width: 100%; height: 100%;
+        background-size: cover; background-position: center;
+        opacity: 0; transition: opacity 1.5s ease-in-out;
+        filter: blur(3px) brightness(0.4);
+    }
+
+    .background-image.active { opacity: 1; }
+
+    #main-content {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        padding: 20px;
+        gap: 20px;
+        flex: 1;
+    }
+
+    #left-sidebar {
+        background: rgba(42, 42, 64, 0.8);
+        padding: 20px; border-radius: 15px;
+        box-shadow: var(--border-glow);
+        text-align: center;
+        height: fit-content;
+    }
+
+    #profile-pic {
+        width: 120px; height: 120px;
+        border-radius: 50%; margin: 0 auto 15px;
+        border: 4px solid var(--glossy-accent);
+        box-shadow: 0 0 10px rgba(106, 106, 255, 0.6);
+        background-size: cover; background-position: center;
+    }
+    
+    #social-links { display: flex; justify-content: space-around; margin-bottom: 25px; font-size: 1.2rem; }
+
+    #navigation-links {
+        text-align: left; padding: 10px; 
+        border: 1px solid rgba(106, 106, 255, 0.3); 
+        border-radius: 10px; background: rgba(42, 42, 64, 0.5); 
+        margin-top: 15px;
+    }
+
+    .nav-link {
+        display: block; text-decoration: none;
+        color: var(--text-light); padding: 10px 15px; 
+        margin: 5px 0; border-radius: 8px;
+        transition: all 0.3s;
+        cursor: pointer;
+    }
+
+    .nav-link:hover { background-color: var(--glossy-accent); color: var(--main-bg); padding-left: 25px; }
+
+    #project-display-area { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+    #current-project-plate {
+        width: 100%;
+        background: var(--card-bg); border-radius: 20px;
+        padding: 30px; text-align: center;
+        border: 2px solid var(--glossy-accent); 
+        box-shadow: var(--border-glow);
+        box-sizing: border-box;
+    }
+
+    .action-button {
+        display: inline-block; padding: 12px 25px; margin: 10px;
+        border-radius: 30px; text-decoration: none; font-weight: bold;
+        cursor: pointer; transition: all 0.3s;
+        color: var(--main-bg); background-color: var(--glossy-accent);
+        border: 2px solid var(--glossy-accent); 
+    }
+
+    .action-button:hover { background: transparent; color: var(--glossy-accent); transform: scale(1.05); }
+
+    #project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+        gap: var(--plate-gap); padding: 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .project-plate {
+        height: 100px; background: var(--card-bg); border-radius: 10px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 0.85rem; padding: 10px; text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        opacity: 0.7; cursor: pointer; transition: all 0.3s;
+    }
+
+    .project-plate.active { opacity: 1; border: 2px solid var(--glossy-accent); transform: scale(1.05); }
+
+    /* --- RESPONSIVE FIX FOR MOBILE --- */
+    @media (max-width: 768px) {
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0; padding: 0;
-            height: 100vh;
-            background-color: var(--main-bg);
-            color: var(--text-light);
-            display: grid;
-            grid-template-rows: 1fr 150px;
-            overflow: hidden;
+            overflow-y: auto; /* Allow scrolling */
         }
-
-        #background-container {
-            position: fixed; top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: -1; overflow: hidden;
-        }
-
-        .background-image {
-            position: absolute; width: 100%; height: 100%;
-            background-size: cover; background-position: center;
-            opacity: 0; transition: opacity 1.5s ease-in-out;
-            filter: blur(3px) brightness(0.4);
-        }
-
-        .background-image.active { opacity: 1; }
-
         #main-content {
-            display: grid;
-            grid-template-columns: 250px 1fr;
-            padding: 20px;
-            height: calc(100vh - 190px);
+            grid-template-columns: 1fr; /* Stack sidebar and content */
+            padding: 10px;
         }
-
-        #left-sidebar {
-            background: rgba(42, 42, 64, 0.8);
-            padding: 20px; border-radius: 15px;
-            box-shadow: var(--border-glow);
-            height: 100%; text-align: center;
-            overflow-y: auto; scrollbar-width: none;
-        }
-        #left-sidebar::-webkit-scrollbar { display: none; }
-
-        #profile-pic {
-            width: 100px; height: 100px;
-            border-radius: 50%; margin: 0 auto 15px;
-            border: 4px solid var(--glossy-accent);
-            box-shadow: 0 0 10px rgba(106, 106, 255, 0.6);
-            background-size: cover; background-position: center;
-        }
-        
-        #social-links { display: flex; justify-content: space-around; margin-bottom: 25px; }
-
-        #navigation-links {
-            text-align: left; padding: 10px; 
-            border: 1px solid rgba(106, 106, 255, 0.3); 
-            border-radius: 10px; background: rgba(42, 42, 64, 0.5); 
-            margin-top: 15px;
-        }
-
-        .nav-link {
-            display: block; text-decoration: none;
-            color: var(--text-light); padding: 10px 15px; 
-            margin: 5px 0; border-radius: 8px;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .nav-link:hover { background-color: var(--glossy-accent); color: var(--main-bg); padding-left: 25px; }
-
-        #project-display-area { display: flex; flex-direction: column; align-items: center; justify-content: center; }
-
-        #current-project-plate {
-            width: 90%; max-width: 800px;
-            background: var(--card-bg); border-radius: 20px;
-            padding: 30px; text-align: center;
-            border: 2px solid var(--glossy-accent); 
-            box-shadow: var(--border-glow);
-        }
-
-        .action-button {
-            display: inline-block; padding: 12px 25px; margin: 10px;
-            border-radius: 30px; text-decoration: none; font-weight: bold;
-            cursor: pointer; transition: all 0.3s;
-            color: var(--main-bg); background-color: var(--glossy-accent);
-            border: 2px solid var(--glossy-accent); 
-        }
-
-        .action-button:hover { background: transparent; color: var(--glossy-accent); transform: scale(1.05); }
-
         #project-grid {
-            width: 98%; display: grid;
-            grid-template-columns: repeat(6, 1fr); 
-            gap: var(--plate-gap); padding: 20px;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
         }
-
-        .project-plate {
-            height: 90px; background: var(--card-bg); border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 0.75rem; padding: 5px; text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0.6; cursor: pointer; transition: all 0.3s;
+        #current-project-plate {
+            padding: 15px;
         }
+        h2 { font-size: 1.4rem; }
+    }
 
-        .project-plate.active { opacity: 1; border: 2px solid var(--glossy-accent); transform: scale(1.05); }
+    /* --- Modal & Spinner --- */
+    #image-modal {
+        display: none; position: fixed;
+        z-index: 9999; left: 0; top: 0;
+        width: 100%; height: 100%;
+        background-color: rgba(0, 0, 0, 0.95);
+        justify-content: center; align-items: center; flex-direction: column;
+    }
 
-        /* --- Modal & Spinner --- */
-        #image-modal {
-            display: none; position: fixed;
-            z-index: 9999; left: 0; top: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
-            justify-content: center; align-items: center; flex-direction: column;
-        }
+    #modal-img { max-width: 90%; max-height: 80%; border: 2px solid var(--glossy-accent); display: none; object-fit: contain; }
 
-        #modal-img { max-width: 85%; max-height: 75%; border: 2px solid var(--glossy-accent); display: none; }
+    .loader {
+        border: 5px solid #f3f3f3; border-top: 5px solid var(--glossy-accent);
+        border-radius: 50%; width: 50px; height: 50px;
+        animation: spin 1s linear infinite;
+    }
 
-        .loader {
-            border: 5px solid #f3f3f3; border-top: 5px solid var(--glossy-accent);
-            border-radius: 50%; width: 50px; height: 50px;
-            animation: spin 1s linear infinite;
-        }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-        .modal-back-btn {
-            margin-top: 25px; padding: 12px 35px;
-            background: var(--glossy-accent); color: white;
-            border: none; border-radius: 30px; cursor: pointer; font-weight: bold;
-        }
-    </style>
+    .modal-back-btn {
+        margin-top: 25px; padding: 12px 35px;
+        background: var(--glossy-accent); color: white;
+        border: none; border-radius: 30px; cursor: pointer; font-weight: bold;
+    }
+</style>
 </head>
 <body>
 
@@ -167,10 +188,18 @@
                 <a href="mailto:jwaynesithole@gmail.com" style="color:white;"><i class="fas fa-envelope"></i></a>
             </div>
             <div id="navigation-links">
-                <a onclick="location.reload()" class="nav-link">Projects</a>
-                <a onclick="openImageModal('https://raw.githubusercontent.com/Wayne0792/my-portfolio/main/tech_skills.png')" class="nav-link">Skills</a>
-                <a onclick="openImageModal('https://raw.githubusercontent.com/Wayne0792/my-portfolio/main/work_expe.png')" class="nav-link">Experience</a>
-            </div>
+    <a href="https://github.com/Wayne0792" target="_blank" class="nav-link">
+        <i class="fas fa-code-branch"></i> Projects
+    </a>
+
+    <a onclick="openImageModal('https://raw.githubusercontent.com/Wayne0792/my-portfolio/main/tech_skills.png')" class="nav-link">
+        <i class="fas fa-lightbulb"></i> Skills
+    </a>
+    
+    <a onclick="openImageModal('https://raw.githubusercontent.com/Wayne0792/my-portfolio/main/work_expe.png')" class="nav-link">
+        <i class="fas fa-briefcase"></i> Experience
+    </a>
+</div>
         </div>
 
         <div id="project-display-area">
